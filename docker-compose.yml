@@ -1,0 +1,75 @@
+version: '3.8'
+
+services:
+  # API de predicción
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: fire_prediction_api
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_ENV=production
+      - MODEL_PATH=/app/models/random_forest_model.pkl
+      - SCALER_PATH=/app/models/scaler.pkl
+    volumes:
+      - ./models:/app/models:ro
+      - ./results:/app/results
+      - ./logs:/app/logs
+    restart: unless-stopped
+    networks:
+      - fire_prediction_net
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Dashboard de Streamlit
+  dashboard:
+    build:
+      context: .
+      dockerfile: Dockerfile.streamlit
+    container_name: fire_prediction_dashboard
+    ports:
+      - "8501:8501"
+    environment:
+      - STREAMLIT_SERVER_PORT=8501
+      - STREAMLIT_SERVER_ADDRESS=0.0.0.0
+    volumes:
+      - ./models:/app/models:ro
+      - ./results:/app/results
+    restart: unless-stopped
+    networks:
+      - fire_prediction_net
+    depends_on:
+      - api
+
+  # Monitor en tiempo real (opcional)
+  monitor:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: fire_prediction_monitor
+    environment:
+      - MONITOR_INTERVAL=60
+    volumes:
+      - ./models:/app/models:ro
+      - ./results:/app/results
+    restart: unless-stopped
+    networks:
+      - fire_prediction_net
+    command: ["python", "deployment/monitor.py"]
+    depends_on:
+      - api
+
+networks:
+  fire_prediction_net:
+    driver: bridge
+
+volumes:
+  models_data:
+  results_data:
+  logs_data:

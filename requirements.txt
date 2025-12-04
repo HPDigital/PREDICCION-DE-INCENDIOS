@@ -1,0 +1,118 @@
+# ================================================================================
+# PREDICCIÓN DE INCENDIOS FORESTALES - DEPENDENCIAS
+# ================================================================================
+# Autor: Herwig Luk Poleyn Paz
+# Python Version: 3.11.5
+# Fecha: Diciembre 2023 - Actualizado 2025
+# ================================================================================
+
+# Core Data Science
+pandas==1.5.3
+numpy==1.24.3
+scipy==1.10.1
+
+# Machine Learning
+scikit-learn==1.2.2
+lightgbm==4.0.0
+xgboost==1.7.6
+imbalanced-learn==0.10.1
+
+# Deep Learning (opcional para experimentos futuros)
+# tensorflow==2.12.0
+# torch==2.0.0
+
+# Azure ML SDK
+azureml-core==1.51.0
+azureml-train-automl==1.51.0
+azureml-sdk==1.51.0
+azureml-interpret==1.51.0
+
+# Explicabilidad del Modelo
+shap==0.42.1
+
+# Visualización
+matplotlib==3.7.1
+seaborn==0.12.2
+plotly==5.14.1
+
+# API y Requests
+requests==2.31.0
+python-dotenv==1.0.0
+
+# Jupyter y Notebooks
+jupyter==1.0.0
+notebook==6.5.4
+ipykernel==6.23.1
+ipywidgets==8.0.6
+
+# Utilidades
+joblib==1.2.0
+tqdm==4.65.0
+python-dateutil==2.8.2
+
+# Testing
+pytest==7.3.1
+pytest-cov==4.1.0
+pytest-mock==3.10.0
+
+# Linting y Formato
+black==23.3.0
+flake8==6.0.0
+pylint==2.17.4
+
+# Documentación
+sphinx==6.2.1
+sphinx-rtd-theme==1.2.0
+
+# MLOps y Monitoreo
+mlflow==2.3.2
+evidently==0.2.8
+
+# Logging
+loguru==0.7.0
+
+# Configuración
+pyyaml==6.0
+configparser==5.3.0
+
+# Serialización
+pickle5==0.0.12
+
+# Optimización de Hiperparámetros
+optuna==3.1.1
+hyperopt==0.2.7
+
+# Manejo de Datos Temporales
+holidays==0.25
+
+# Extras
+openpyxl==3.1.2  # Para exportar a Excel
+Pillow==9.5.0    # Procesamiento de imágenes
+
+# ================================================================================
+# NOTAS DE INSTALACIÓN
+# ================================================================================
+# 
+# 1. INSTALACIÓN BÁSICA:
+#    pip install -r requirements.txt
+#
+# 2. INSTALACIÓN PARA DESARROLLO:
+#    pip install -r requirements.txt -r requirements-dev.txt
+#
+# 3. ACTUALIZAR DEPENDENCIAS:
+#    pip install --upgrade -r requirements.txt
+#
+# 4. VERIFICAR COMPATIBILIDAD:
+#    pip check
+#
+# 5. CONGELAR VERSIONES ACTUALES:
+#    pip freeze > requirements-frozen.txt
+#
+# ================================================================================
+# COMPATIBILIDAD
+# ================================================================================
+# - Python: 3.11.x (recomendado 3.11.5)
+# - Sistema Operativo: Windows 10/11, Linux, macOS
+# - RAM mínima: 8GB (16GB recomendado para Azure AutoML)
+# - Espacio en disco: 5GB para datos y modelos
+# ================================================================================
